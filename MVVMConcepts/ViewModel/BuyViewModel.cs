@@ -22,11 +22,11 @@ namespace MVVMConcepts.ViewModel
         public BuyViewModel()
         {
             ItemList = new ObservableCollection<Items>();
-            ItemList.Add(new Items() { Item_No = "A1", Item_Name = "Apple", Item_Cost = 0.35M, Item_Price = 0.5M });
-            ItemList.Add(new Items() { Item_No = "B1", Item_Name = "Banana", Item_Cost = 0.15M, Item_Price = 0.3M });
-            ItemList.Add(new Items() { Item_No = "D1", Item_Name = "Durian", Item_Cost = 2.1M, Item_Price = 2.7M });
-            ItemList.Add(new Items() { Item_No = "G1", Item_Name = "Guava", Item_Cost = 0.25M, Item_Price = 0.4M });
-            ItemList.Add(new Items() { Item_No = "P1", Item_Name = "Pear", Item_Cost = 0.45M, Item_Price = 0.6M });
+            ItemList.Add(new Items() { Item_No = "A12", Item_Name = "iPhone 12", Item_Cost = 500M, Item_Price = 1200M });
+            ItemList.Add(new Items() { Item_No = "A13", Item_Name = "iPhone 13", Item_Cost = 600M, Item_Price = 1300M });
+            ItemList.Add(new Items() { Item_No = "S21", Item_Name = "Galaxy S21", Item_Cost = 400M, Item_Price = 1000M });
+            ItemList.Add(new Items() { Item_No = "S22", Item_Name = "Galaxy S22", Item_Cost = 450M, Item_Price = 1100M });
+            ItemList.Add(new Items() { Item_No = "GF3", Item_Name = "Fold 3", Item_Cost = 950M, Item_Price = 1700M });
             Buying = true;
             Selling = false;
         }
