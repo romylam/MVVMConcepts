@@ -15,28 +15,30 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.7*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Item No"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Description"/>
-        <Label Content="Unit Price" Grid.Row="2" Grid.Column="0" Visibility="{Binding Selling, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <Label Content="Unit Cost" Grid.Row="2" Grid.Column="0" Visibility="{Binding Buying, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <ComboBox Grid.Row="0" Grid.Column="1" Name="ItemCombo" DisplayMemberPath="Item_No" SelectedItem="{Binding ItemSelected}" ItemsSource="{Binding ItemList}">
+        <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Item No" HorizontalAlignment="Right"/>
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Description" HorizontalAlignment="Right"/>
+        <Label Content="Unit Price" Grid.Row="2" Grid.Column="0" Margin="5" HorizontalAlignment="Right" Visibility="{Binding Selling, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <Label Content="Unit Cost" Grid.Row="3" Grid.Column="0" Margin="5" HorizontalAlignment="Right" Visibility="{Binding Buying, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,0,5,5" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                  Name="ItemCombo" DisplayMemberPath="Item_No" SelectedItem="{Binding ItemSelected}" ItemsSource="{Binding ItemList}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding RetrieveItemCommand}" CommandParameter="{Binding ElementName=ItemCombo, Path=SelectedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ComboBox>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ItemDescription}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding ItemDescription}"/>
         <Grid Grid.Row="2" Grid.Column="1" Visibility="{Binding Selling, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Name="ItemPrice" Text="{Binding ItemUnitPrice, StringFormat=c2}"/>
+            <TextBlock Name="ItemPrice" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding ItemUnitPrice, StringFormat=c2}"/>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="1" Visibility="{Binding Buying, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Name="ItemCost" Text="{Binding ItemUnitCost, StringFormat=c2}"/>
+        <Grid Grid.Row="3" Grid.Column="1" Visibility="{Binding Buying, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Name="ItemCost" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding ItemUnitCost, StringFormat=c2}"/>
         </Grid>
     </Grid>
 </UserControl>

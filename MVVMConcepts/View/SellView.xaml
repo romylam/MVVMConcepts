@@ -15,18 +15,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.7*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Sell Screen" FontSize="25" Background="Bisque" HorizontalAlignment="Stretch"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Sales Order Number"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SellOrder}"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Sell Stuff" FontSize="25" Background="Bisque" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Sales Order Number" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding SellOrder}"/>
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
             <local:ItemView/>
         </Grid>
-        <Label Grid.Row="3" Grid.Column="0" Content="Quantity"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SellQuantity, StringFormat=n0}"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Amount"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SellAmount, StringFormat=c2}"/>
+        <Label Grid.Row="3" Grid.Column="0" Margin="5" HorizontalAlignment="Right" Content="Quantity"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding SellQuantity, StringFormat=n0}"/>
+        <Label Grid.Row="4" Grid.Column="0" Margin="5" HorizontalAlignment="Right" Content="Amount"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="5" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding SellAmount, StringFormat=c2}"/>
     </Grid>
 </UserControl>

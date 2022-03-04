@@ -15,18 +15,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.7*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Buy Screen" FontSize="25" Background="Azure" HorizontalAlignment="Stretch"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Purchase Order Number"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BuyOrder}"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Buy Stuff" FontSize="25" Background="LightBlue" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Purchase Order Number" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding BuyOrder}"/>
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
             <local:ItemView/>
         </Grid>
-        <Label Grid.Row="3" Grid.Column="0" Content="Quantity"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding BuyQuantity, StringFormat=n0}"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Amount"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding BuyAmount, StringFormat=c2}"/>
+        <Label Grid.Row="3" Grid.Column="0" Margin="5" Content="Quantity" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding BuyQuantity, StringFormat=n0}"/>
+        <Label Grid.Row="4" Grid.Column="0" Margin="5" Content="Amount" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="5" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding BuyAmount, StringFormat=c2}"/>
     </Grid>
 </UserControl>
