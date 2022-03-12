@@ -17,4 +17,21 @@ namespace MVVMConcepts.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
         }
     }
+    public sealed class Shared
+    {
+        private Shared()
+        {
+        }
+        private static Shared instance = null;
+        public static Shared Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new Shared();
+                return instance;
+            }
+        }
+        public Dictionary<string, object> DialogParameter = new Dictionary<string, object>();
+    }
 }

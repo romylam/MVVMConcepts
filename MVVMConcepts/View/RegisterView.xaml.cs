@@ -21,9 +21,10 @@ namespace MVVMConcepts.View
     /// </summary>
     public partial class RegisterView : UserControl
     {
-        public RegisterView()
+        public RegisterView(string userName)
         {
             InitializeComponent();
+            DataContext = new RegisterViewModel(userName);
         }
     }
 }

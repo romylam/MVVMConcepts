@@ -8,6 +8,6 @@ namespace MVVMConcepts.Interface
 {
     public interface IDialogService
     {
-        void ShowDialog<TView>(string Title);
+        void ShowDialog<TView>(string Title, string Parameter = null);
     }
 }

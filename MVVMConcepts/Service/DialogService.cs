@@ -2,6 +2,7 @@
 using MVVMConcepts.Interface;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,13 @@ namespace MVVMConcepts.Service
 {
     public class DialogService : IDialogService
     {
-        public void ShowDialog<TView>(string Title)
+        public void ShowDialog<TView>(string Title, string Parameter = null)
         {
             var dialog = new DialogWindow();
             var type = typeof(TView);
-            dialog.Content = Activator.CreateInstance(type);
+            Debug.WriteLine($"View Parameter is {Parameter}");
+            dialog.Content = Parameter == null ? Activator.CreateInstance(type) : Activator.CreateInstance(type, Parameter);
             dialog.Title = Title;
-            dialog.DataContext = 
             dialog.ShowDialog();
         }
     }
