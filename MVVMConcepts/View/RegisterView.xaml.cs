@@ -1,4 +1,5 @@
-﻿using MVVMConcepts.ViewModel;
+﻿using MVVMConcepts.Dialog;
+using MVVMConcepts.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,10 @@ namespace MVVMConcepts.View
     /// </summary>
     public partial class RegisterView : UserControl
     {
-        public RegisterView(string userName)
+        public RegisterView()
         {
             InitializeComponent();
-            DataContext = new RegisterViewModel(userName);
+            DataContext = new RegisterViewModel();
         }
     }
 }

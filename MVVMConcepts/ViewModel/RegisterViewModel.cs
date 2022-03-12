@@ -1,10 +1,14 @@
 ﻿using MVVMConcepts.Command;
+using MVVMConcepts.Dialog;
+using MVVMConcepts.Interface;
+using MVVMConcepts.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MVVMConcepts.ViewModel
@@ -12,10 +16,10 @@ namespace MVVMConcepts.ViewModel
     public class RegisterViewModel : BaseViewModel
     {
         private string _UserName;
-        public RegisterViewModel(string userName)
+        IDialogService _dialogService = new DialogService();
+        public RegisterViewModel()
         {
             UserName = Shared.Instance.DialogParameter["UserName"].ToString();
-            Debug.WriteLine($"ViewModel Parameter is {UserName}");
         }
         public string UserName
         {
@@ -28,7 +32,8 @@ namespace MVVMConcepts.ViewModel
         }
         private void executeRegisterName(object parameter)
         {
-            Shared.Instance.DialogParameter["UserName"] = parameter;
+            Shared.Instance.DialogParameter["UserName"] = UserName;
+            _dialogService.CloseDialog(parameter as DialogWindow);
         }
         private bool canExecuteAlways(object parameter)
         {

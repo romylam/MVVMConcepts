@@ -1,5 +1,6 @@
 ﻿using MVVMConcepts.Dialog;
 using MVVMConcepts.Interface;
+using MVVMConcepts.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +21,10 @@ namespace MVVMConcepts.Service
             dialog.Content = Parameter == null ? Activator.CreateInstance(type) : Activator.CreateInstance(type, Parameter);
             dialog.Title = Title;
             dialog.ShowDialog();
+        }
+        public void CloseDialog(DialogWindow dialog)
+        {
+            dialog.Close();
         }
     }
 }

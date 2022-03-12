@@ -50,9 +50,10 @@ namespace MVVMConcepts.ViewModel
         }
         private void executeRegister(object parameter)
         {
+
             Shared.Instance.DialogParameter.Clear();
             Shared.Instance.DialogParameter.Add("UserName", UserName);
-            _dialogService.ShowDialog<RegisterView>("Register",UserName);
+            _dialogService.ShowDialog<RegisterView>("Register");
             UserName = Shared.Instance.DialogParameter["UserName"].ToString();
         }
         private bool canExecuteAlways(object parameter)
