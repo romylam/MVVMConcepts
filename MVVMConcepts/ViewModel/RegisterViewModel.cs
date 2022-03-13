@@ -16,7 +16,6 @@ namespace MVVMConcepts.ViewModel
     public class RegisterViewModel : BaseViewModel
     {
         private string _UserName;
-        IDialogService _dialogService = new DialogService();
         public RegisterViewModel()
         {
             UserName = Shared.Instance.DialogParameter["UserName"].ToString();
@@ -33,7 +32,6 @@ namespace MVVMConcepts.ViewModel
         private void executeRegisterName(object parameter)
         {
             Shared.Instance.DialogParameter["UserName"] = UserName;
-            _dialogService.CloseDialog(parameter as DialogWindow);
         }
         private bool canExecuteAlways(object parameter)
         {

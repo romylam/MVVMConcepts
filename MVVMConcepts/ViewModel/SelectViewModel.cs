@@ -1,4 +1,5 @@
 ﻿using MVVMConcepts.Command;
+using MVVMConcepts.Dialog;
 using MVVMConcepts.Interface;
 using MVVMConcepts.Service;
 using MVVMConcepts.View;
@@ -14,35 +15,43 @@ namespace MVVMConcepts.ViewModel
     public class SelectViewModel : BaseViewModel
     {
         private string _UserName;
-        IDialogService _dialogService = new DialogService();
+        DialogControl dialogControl = new DialogControl();
         public SelectViewModel()
         {
-            UserName = "John";
+            UserName = "";
         }
         public string UserName
         {
             get { return _UserName; }
-            set { _UserName = value; onPropertyChanged(nameof(UserName)); onPropertyChanged(nameof(SelectLabel)); }
+            set { _UserName = value; onPropertyChanged(nameof(UserName)); onPropertyChanged(nameof(SelectLabel)); onPropertyChanged(nameof(AllowTrade)); }
+        }
+        public bool AllowTrade
+        {
+            get { return string.IsNullOrEmpty(UserName) ? false : true; }
         }
         public string SelectLabel
         {
-            get { return string.IsNullOrEmpty(UserName) ? "Select Action" : $"Select Action, {UserName}"; }
+            get { return string.IsNullOrEmpty(UserName) ? "Register First" : $"Select Action, {UserName}"; }
         }
         public ICommand BuyItemCommand
         {
-            get { return new GeneralCommand(executeBuyItem, canExecuteAlways); }
+            get { return new GeneralCommand(executeBuyItem, canTrade); }
         }
         private void executeBuyItem(object parameter)
         {
-            _dialogService.ShowDialog<BuyView>("Buy");
+            dialogControl.OpenDialog("Buy");
         }
         public ICommand SellItemCommand
         {
-            get { return new GeneralCommand(executeSellItem, canExecuteAlways); }
+            get { return new GeneralCommand(executeSellItem, canTrade); }
         }
         private void executeSellItem(object parameter)
         {
-            _dialogService.ShowDialog<SellView>("Sell");
+            dialogControl.OpenDialog("Sell");
+        }
+        private bool canTrade(object parameter)
+        {
+            return AllowTrade;
         }
         public ICommand RegisterCommand
         {
@@ -50,10 +59,9 @@ namespace MVVMConcepts.ViewModel
         }
         private void executeRegister(object parameter)
         {
-
             Shared.Instance.DialogParameter.Clear();
             Shared.Instance.DialogParameter.Add("UserName", UserName);
-            _dialogService.ShowDialog<RegisterView>("Register");
+            dialogControl.OpenDialog("Register");
             UserName = Shared.Instance.DialogParameter["UserName"].ToString();
         }
         private bool canExecuteAlways(object parameter)

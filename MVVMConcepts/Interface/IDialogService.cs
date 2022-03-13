@@ -10,7 +10,6 @@ namespace MVVMConcepts.Interface
 {
     public interface IDialogService
     {
-        void ShowDialog<TView>(string Title, string Parameter = null);
-        void CloseDialog(DialogWindow dialog);
+        void OpenDialog<TView>(string Title);
     }
 }

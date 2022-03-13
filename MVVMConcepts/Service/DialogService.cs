@@ -13,18 +13,13 @@ namespace MVVMConcepts.Service
 {
     public class DialogService : IDialogService
     {
-        public void ShowDialog<TView>(string Title, string Parameter = null)
+        public void OpenDialog<TView>(string Title)
         {
-            var dialog = new DialogWindow();
-            var type = typeof(TView);
-            Debug.WriteLine($"View Parameter is {Parameter}");
-            dialog.Content = Parameter == null ? Activator.CreateInstance(type) : Activator.CreateInstance(type, Parameter);
+            DialogWindow dialog = new DialogWindow();
+            Type type = typeof(TView);
+            dialog.Content = Activator.CreateInstance(type);
             dialog.Title = Title;
             dialog.ShowDialog();
-        }
-        public void CloseDialog(DialogWindow dialog)
-        {
-            dialog.Close();
         }
     }
 }
