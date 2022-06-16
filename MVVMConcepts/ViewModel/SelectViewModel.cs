@@ -47,7 +47,7 @@ namespace MVVMConcepts.ViewModel
         }
         public int RunPercent
         {
-            get { return RunCount % ListCount; }
+            get { return RunCount == ListCount ? ListCount : RunCount % ListCount; }
         }
         public string RunStatus
         {
