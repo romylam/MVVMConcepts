@@ -14,6 +14,8 @@ namespace MVVMConcepts.ViewModel
 {
     public class SelectViewModel : BaseViewModel
     {
+        private int _RunCount;
+        private int _ListCount;
         private string _UserName;
         DialogControl dialogControl = new DialogControl();
         public SelectViewModel()
@@ -33,6 +35,28 @@ namespace MVVMConcepts.ViewModel
         {
             get { return string.IsNullOrEmpty(UserName) ? "Register First" : $"Select Action, {UserName}"; }
         }
+        public int RunCount
+        {
+            get { return _RunCount; }
+            set { _RunCount = value; onPropertyChanged(nameof(RunCount)); onPropertyChanged(nameof(RunPercent)); onPropertyChanged(nameof(RunStatus)); onPropertyChanged(nameof(RunComplete)); }
+        }
+        public int ListCount
+        {
+            get { return _ListCount; }
+            set { _ListCount = value; onPropertyChanged(nameof(ListCount)); }
+        }
+        public int RunPercent
+        {
+            get { return RunCount % ListCount; }
+        }
+        public string RunStatus
+        {
+            get { return $"Processing {RunCount} of {ListCount} item(s)"; }
+        }
+        public bool RunComplete
+        {
+            get { return RunCount == ListCount; }
+        }
         public ICommand BuyItemCommand
         {
             get { return new GeneralCommand(executeBuyItem, canTrade); }
@@ -48,6 +72,14 @@ namespace MVVMConcepts.ViewModel
         private void executeSellItem(object parameter)
         {
             dialogControl.OpenDialog("Sell");
+        }
+        public ICommand PostItemCommand
+        {
+            get { return new GeneralCommand(executePostItem, canTrade); }
+        }
+        private void executePostItem(object parameter)
+        {
+            dialogControl.OpenDialog("Post");
         }
         private bool canTrade(object parameter)
         {

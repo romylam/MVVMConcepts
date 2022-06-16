@@ -15,6 +15,7 @@
         <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
             <Button Margin="5" Width="200" Content="Buy" HorizontalAlignment="Center" Command="{Binding BuyItemCommand}"/>
             <Button Margin="5" Width="200" Content="Sell" HorizontalAlignment="Center" Command="{Binding SellItemCommand}"/>
+            <Button Margin="5" Width="200" Content="Post" HorizontalAlignment="Center" Command="{Binding PostItemCommand}"/>
             <Button Margin="5" Width="200" Content="Register" HorizontalAlignment="Center" Command="{Binding RegisterCommand}"/>
         </StackPanel>
     </Grid>

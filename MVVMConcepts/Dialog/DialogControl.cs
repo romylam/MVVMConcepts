@@ -23,6 +23,9 @@ namespace MVVMConcepts.Dialog
                 case "Sell":
                     dialogService.OpenDialog<SellView>(ViewTitle);
                     break;
+                case "Post":
+                    dialogService.OpenDialog<PostView>(ViewTitle);
+                    break;
                 case "Register":
                     dialogService.OpenDialog<RegisterView>(ViewTitle);
                     break;
