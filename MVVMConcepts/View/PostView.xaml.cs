@@ -1,6 +1,7 @@
 ﻿using MVVMConcepts.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace MVVMConcepts.View
         public PostView()
         {
             InitializeComponent();
-            DataContext = new PostViewModel();
+            //DataContext = new PostViewModel();
         }
     }
 }

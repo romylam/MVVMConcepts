@@ -13,8 +13,8 @@ namespace MVVMConcepts.ViewModel
     {
         public PostViewModel()
         {
-            RunCount = 0;
-            ListCount = 50;
+            //RunCount = 0;
+            //ListCount = 50;
             BackgroundWorker worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.DoWork += worker_DoWork;

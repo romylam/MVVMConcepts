@@ -5,8 +5,10 @@ using MVVMConcepts.Service;
 using MVVMConcepts.View;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -79,6 +81,8 @@ namespace MVVMConcepts.ViewModel
         }
         private void executePostItem(object parameter)
         {
+            RunCount = 0;
+            ListCount = 50;
             dialogControl.OpenDialog("Post");
         }
         private bool canTrade(object parameter)
