@@ -18,6 +18,7 @@ namespace MVVMConcepts.Service
             DialogWindow dialog = new DialogWindow();
             Type type = typeof(TView);
             dialog.Content = Activator.CreateInstance(type);
+            
             dialog.Title = Title;
             dialog.ShowDialog();
         }

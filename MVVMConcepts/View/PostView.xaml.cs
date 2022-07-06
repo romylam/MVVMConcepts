@@ -22,10 +22,21 @@ namespace MVVMConcepts.View
     /// </summary>
     public partial class PostView : UserControl
     {
+
+
+        public int MaxCount
+        {
+            get { return (int)GetValue(MaxCountProperty); }
+            set { SetValue(MaxCountProperty, value); }
+        }
+        public static readonly DependencyProperty MaxCountProperty =
+            DependencyProperty.Register("MaxCount", typeof(int), typeof(PostView), new PropertyMetadata(0));
+
+
         public PostView()
         {
             InitializeComponent();
-            //DataContext = new PostViewModel();
+            DataContext = new PostViewModel(MaxCount);
         }
     }
 }

@@ -81,8 +81,6 @@ namespace MVVMConcepts.ViewModel
         }
         private void executePostItem(object parameter)
         {
-            RunCount = 0;
-            ListCount = 50;
             dialogControl.OpenDialog("Post");
         }
         private bool canTrade(object parameter)
