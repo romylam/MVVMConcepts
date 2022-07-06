@@ -1,16 +1,16 @@
-﻿<UserControl x:Class="ModalApp.View.movieListView"
+﻿<UserControl x:Class="ModalApp.View.movieRegistryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ModalApp.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView SelectedItem="{Binding movieSelectedItem}" ItemsSource="{Binding movieList}" HorizontalAlignment="Stretch">
+        <ListView x:Name="movieListView" SelectedItem="{Binding movieSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding movieList}" HorizontalAlignment="Stretch" IsSynchronizedWithCurrentItem="True">
             <ListView.Resources>
                 <Style TargetType="{x:Type ListView}">
-                    <Setter Property="Margin" Value="5"/>
                     <Setter Property="SelectionMode" Value="Single"/>
                     <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
                     <Setter Property="SelectedIndex" Value="0"/>
@@ -45,12 +45,20 @@
                         <GridViewColumnHeader Content="Available" HorizontalContentAlignment="Center"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding Available}" HorizontalAlignment="Center"/>
+                                <CheckBox IsChecked="{Binding Available}" IsHitTestVisible="False" HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding movieSelectCommand}" CommandParameter="{Binding ElementName=movieListView, Path=SelectedItem}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding movieSelectCommand}" CommandParameter="{Binding ElementName=movieListView, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </ListView>    
     </Grid>
 </UserControl>

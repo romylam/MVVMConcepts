@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ModalApp.View"
+             xmlns:converter="clr-namespace:ModalApp.Converter"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <converter:StringMatchConverter x:Key="stringMatchConverter"/>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="20,10,10,10"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -22,6 +25,10 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
@@ -48,13 +55,13 @@
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Title"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Media"/>
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Available"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Title}" Width="200"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding movieTitle}" Width="200"/>
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                <RadioButton GroupName="mediaType" Content="DVD" IsChecked="{Binding Media}"/>
-                <RadioButton GroupName="mediaType" Content="Blu-ray" IsChecked="{Binding Media}"/>
-                <RadioButton GroupName="mediaType" Content="UHD Blu-ray" IsChecked="{Binding Media}"/>
+                <RadioButton GroupName="mediaType" Content="DVD" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=DVD}"/>
+                <RadioButton GroupName="mediaType" Content="Blu-ray" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=Blu-ray}"/>
+                <RadioButton GroupName="mediaType" Content="UHD/Blu-ray" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=UHD/Blu-ray}"/>
             </StackPanel>
-            <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Available}"/>
+            <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding movieAvailable}"/>
             <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="15,0,0,0">
                 <Button Content="Ok" Command="{Binding okMovieCommand}"/>
                 <Button Content="Cancel" Command="{Binding cancelMovieCommand}"/>

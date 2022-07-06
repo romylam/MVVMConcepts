@@ -4,11 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ModalApp.View"
+             xmlns:converter="clr-namespace:ModalApp.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <converter:StringMatchConverter x:Key="stringMatchConverter"/>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="20,10,10,10"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="10"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         <Style TargetType="CheckBox">
@@ -30,9 +36,9 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Title"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Media"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Available"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Media}"/>
-            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Available}"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding movieTitle}"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding movieMedia}"/>
+            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding movieAvailable}"/>
         </Grid>
     </Border>
 </UserControl>

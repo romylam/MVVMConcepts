@@ -16,9 +16,9 @@ namespace ModalApp.View
     /// <summary>
     /// Interaction logic for movieListView.xaml
     /// </summary>
-    public partial class movieListView : UserControl
+    public partial class movieRegistryView : UserControl
     {
-        public movieListView()
+        public movieRegistryView()
         {
             InitializeComponent();
         }
