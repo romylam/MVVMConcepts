@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ModalApp"
         xmlns:views="clr-namespace:ModalApp.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <Grid>
         <views:movieView/>
     </Grid>

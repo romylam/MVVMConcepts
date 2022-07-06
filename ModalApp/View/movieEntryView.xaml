@@ -38,34 +38,32 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
-    <Border BorderBrush="Black" BorderThickness="1">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" Padding="10" Text="Add a Movie" Background="Orange" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Title"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Media"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Available"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding movieTitle}" Width="200"/>
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                <RadioButton GroupName="mediaType" Content="DVD" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=DVD}"/>
-                <RadioButton GroupName="mediaType" Content="Blu-ray" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=Blu-ray}"/>
-                <RadioButton GroupName="mediaType" Content="UHD/Blu-ray" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=UHD/Blu-ray}"/>
-            </StackPanel>
-            <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding movieAvailable}"/>
-            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="15,0,0,0">
-                <Button Content="Ok" Command="{Binding okMovieCommand}"/>
-                <Button Content="Cancel" Command="{Binding cancelMovieCommand}"/>
-            </StackPanel>
-        </Grid>
-    </Border>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" Padding="10" Text="Add a Movie" Background="Orange" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Title" Margin="20,20,10,10"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Media"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Available"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding movieTitle}" Width="200" Margin="10,20,10,10"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <RadioButton GroupName="mediaType" Content="DVD" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=DVD}"/>
+            <RadioButton GroupName="mediaType" Content="Blu-ray" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=Blu-ray}"/>
+            <RadioButton GroupName="mediaType" Content="UHD/Blu-ray" IsChecked="{Binding movieMedia, Converter={StaticResource stringMatchConverter}, ConverterParameter=UHD/Blu-ray}"/>
+        </StackPanel>
+        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding movieAvailable}"/>
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="15,0,0,0">
+            <Button Content="Ok" Command="{Binding okMovieCommand}"/>
+            <Button Content="Cancel" Command="{Binding cancelMovieCommand}"/>
+        </StackPanel>
+    </Grid>
 </UserControl>

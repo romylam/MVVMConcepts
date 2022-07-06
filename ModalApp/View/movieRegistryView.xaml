@@ -39,8 +39,8 @@
             </ListView.Resources>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200"/>
-                    <GridViewColumn Header="Media" DisplayMemberBinding="{Binding Media}" Width="80"/>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="420"/>
+                    <GridViewColumn Header="Media" DisplayMemberBinding="{Binding Media}" Width="100"/>
                     <GridViewColumn Width="75">
                         <GridViewColumnHeader Content="Available" HorizontalContentAlignment="Center"/>
                         <GridViewColumn.CellTemplate>

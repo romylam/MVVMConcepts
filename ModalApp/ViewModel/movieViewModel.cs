@@ -165,7 +165,7 @@ namespace ModalApp.ViewModel
                 {
                     i++;
                     runPercent = i == runMax ? runMax : i % runMax;
-                    Thread.Sleep(100);
+                    Thread.Sleep(50);
                 }
                 runComplete = true;
             }

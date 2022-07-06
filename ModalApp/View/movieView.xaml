@@ -15,31 +15,33 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="0.5*"/>
-        </Grid.ColumnDefinitions>
-        <modal:Modal Panel.ZIndex="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2" IsOpen="{Binding openEntryModal}">
-            <local:movieEntryView/>
+        <modal:Modal Panel.ZIndex="10" IsOpen="{Binding openEntryModal}">
+            <local:movieEntryView Width="720" Height="480"/>
         </modal:Modal>
-        <modal:Modal Panel.ZIndex="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2" IsOpen="{Binding openPostModal}">
-            <local:moviePostView/>
+        <modal:Modal Panel.ZIndex="10" IsOpen="{Binding openPostModal}">
+            <local:moviePostView Width="720" Height="120"/>
         </modal:Modal>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Movie Selection" FontSize="20" Margin="5"/>
-        <local:movieRegistryView Grid.Row="1" Grid.Column="0" Margin="5"/>
-        <local:movieDetailsView Grid.Row="1" Grid.Column="1" Margin="5"/>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Add" Command="{Binding addMovieCommand}"/>
-            <Button Content="Edit"/>
-            <Button Content="Delete"/>
-            <Button Content="Post" Command="{Binding postMovieCommand}"/>
-            <Button Content="Rent"/>
-            <Button Content="Return"/>
-        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Movie Selection" FontSize="20" Margin="5"/>
+            <local:movieRegistryView Grid.Row="1" Grid.Column="0" Margin="5"/>
+            <local:movieDetailsView Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Add" Command="{Binding addMovieCommand}"/>
+                <Button Content="Edit"/>
+                <Button Content="Delete"/>
+                <Button Content="Post" Command="{Binding postMovieCommand}"/>
+                <Button Content="Rent"/>
+                <Button Content="Return"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
