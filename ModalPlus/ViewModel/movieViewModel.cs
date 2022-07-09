@@ -42,28 +42,35 @@ namespace MoviePlus.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteMovieCommand))]
         [NotifyCanExecuteChangedFor(nameof(RentMovieCommand))]
         [NotifyCanExecuteChangedFor(nameof(ReturnMovieCommand))]
+        [NotifyCanExecuteChangedFor(nameof(PurgeMovieCommand))]
         private bool movieAvailable;
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(MovieCount))]
+        [NotifyCanExecuteChangedFor(nameof(EditMovieCommand))]
+        [NotifyCanExecuteChangedFor(nameof(DeleteMovieCommand))]
+        [NotifyCanExecuteChangedFor(nameof(RentMovieCommand))]
+        [NotifyCanExecuteChangedFor(nameof(ReturnMovieCommand))]
+        [NotifyCanExecuteChangedFor(nameof(PurgeMovieCommand))]
         private movie movieSelectedItem;
 
         [ObservableProperty]
         private string movieOption;
 
         [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(PurgeMovieCommand))]
-        private ObservableCollection<movie> movieList;
+        private List<movie> movieList;
 
         private ICollectionView MovieCollectionView;
         public string RunStatus => $"{RunPercent} of {RunMax} processed";
         public int MovieCount => MovieList.Count;
+        public int MovieRentedOut => MovieList.Count(x => x.Available == false);
         public movieViewModel()
         {
-            MovieList = new ObservableCollection<movie>();
+            MovieList = new List<movie>();
             MovieList.Add(new movie() { Title = "Jurassic Park", Media = "Blu-ray", Available = true });
-            MovieList.Add(new movie() { Title = "Blade Runner", Media = "DVD", Available = true });
+            MovieList.Add(new movie() { Title = "Blade Runner", Media = "DVD", Available = false });
             MovieList.Add(new movie() { Title = "Alita Battle Angel", Media = "UHD/Blu-ray", Available = true });
-            MovieCollectionView = CollectionViewSource.GetDefaultView(movieList);
+            MovieCollectionView = CollectionViewSource.GetDefaultView(MovieList);
             MovieCollectionView.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Ascending));
             MovieCollectionView.MoveCurrentToFirst();
         }
@@ -96,11 +103,16 @@ namespace MoviePlus.ViewModel
             MovieOption = "Add";
             OpenEntryModal = true;
         }
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanEditMovie))]
         public void EditMovie()
         {
             MovieOption = "Edit";
             OpenEntryModal = true;
+        }
+        public bool CanEditMovie()
+        {
+            Debug.WriteLine(MovieList.Count);
+            return MovieCount > 0;
         }
         [RelayCommand(CanExecute = nameof(CanDeleteMovie))]
         public void DeleteMovie()
@@ -110,39 +122,41 @@ namespace MoviePlus.ViewModel
         }
         public bool CanDeleteMovie()
         {
-            return MovieAvailable;
+            return MovieCount > 0 && MovieAvailable;
         }
         [RelayCommand(CanExecute = nameof(CanRentMovie))]
         public void RentMovie()
         {
-            MovieAvailable = false;
             MovieSelectedItem.Available = false;
+            OnPropertyChanged(nameof(MovieRentedOut));
+            MovieAvailable = false;
             MovieCollectionView.Refresh();
         }
         public bool CanRentMovie()
         {
-            return MovieAvailable;
+            return MovieCount > 0 && MovieAvailable;
         }
         [RelayCommand(CanExecute = nameof(CanReturnMovie))]
         public void ReturnMovie()
         {
-            MovieAvailable = true;
             MovieSelectedItem.Available = true;
+            OnPropertyChanged(nameof(MovieRentedOut));
+            MovieAvailable = true;
             MovieCollectionView.Refresh();
         }
         public bool CanReturnMovie()
         {
-            return !MovieAvailable;
+            return MovieCount > 0 && !MovieAvailable;
         }
         [RelayCommand(CanExecute = nameof(CanPurgeMovie))]
         public void PurgeMovie()
         {
+            MovieList.RemoveAll(x => x.Available);
             MovieCollectionView.Refresh();
         }
         public bool CanPurgeMovie()
         {
-            Debug.WriteLine(MovieList.Count);
-            return MovieList.Count > 0;
+            return MovieCount > 0 && MovieCount != MovieRentedOut;
         }
         [RelayCommand]
         public void OkMovie()
@@ -151,17 +165,17 @@ namespace MoviePlus.ViewModel
             {
                 case "Add":
                     MovieList.Add(new movie() { Title = MovieTitle, Media = MovieMedia, Available = MovieAvailable });
-                    MovieCollectionView.MoveCurrentTo(MovieList.FirstOrDefault(x => x.Title == MovieTitle));
                     break;
                 case "Edit":
                     MovieSelectedItem.Title = MovieTitle;
                     MovieSelectedItem.Media = MovieMedia;
                     MovieSelectedItem.Available = MovieAvailable;
-                    MovieCollectionView.Refresh();
                     break;
             }
-            MovieOption = string.Empty;
             OpenEntryModal = false;
+            MovieOption = string.Empty;
+            MovieCollectionView.Refresh();
+            MovieCollectionView.MoveCurrentTo(MovieList.FirstOrDefault(x => x.Title == MovieTitle));
         }
         [RelayCommand]
         public void CancelMovie()

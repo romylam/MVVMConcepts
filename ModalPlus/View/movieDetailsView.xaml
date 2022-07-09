@@ -33,6 +33,7 @@
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding MovieTitle}"/>
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding MovieMedia}"/>
             <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding MovieAvailable}"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding MovieRentedOut}" HorizontalAlignment="Right"/>
         </Grid>
     </Border>
 </UserControl>
